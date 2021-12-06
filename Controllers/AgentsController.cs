@@ -20,7 +20,7 @@ public class AgentsController : ControllerBase
     {
 
         var response = new GetAgentsResponse();
-        response.Agents = await _context.Agents
+        response.Agents = await _context.Agents!
              .Where(a => a.Retired == false)
              .Select(a => new AgentResponseItem // Map
             {
