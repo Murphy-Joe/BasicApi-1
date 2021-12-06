@@ -1,4 +1,7 @@
 
+using BasicApi.Data;
+using Microsoft.EntityFrameworkCore;
+
 Console.WriteLine("Starting up!");
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,13 @@ builder.Services.AddControllers(); // Set up the controller style of building an
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<BasicDataContext>(builder =>
+{
+    // TODO: NEVER DO THIS.
+    builder.UseSqlServer(@"server=.\sqlexpress;database=basic_dev;integrated security=true");
+});
+
+// Services have to be registered before this .Build() call.
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
