@@ -17,4 +17,6 @@ public class Agent
     public DateTime Added { get; set; }
     public bool Retired { get; set; }
 
+    public string? State { get; set; }
+
 }

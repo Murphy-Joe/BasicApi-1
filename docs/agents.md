@@ -21,10 +21,14 @@ Content-Type: application/json
 ```json
 {
     "agents": [
-        { "id": 939, "firstName": "Bob", "lastName": "Smith", "phone": "555-1212", "email": "Bob@aol.com"
+        { 
+            "id": 939, 
+            "firstName": "Bob", 
+            "lastName": "Smith", 
+            "phone": "555-1212", 
+            "email": "Bob@aol.com"
         }
     ]
-
 }
 
 ```
