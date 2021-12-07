@@ -1,7 +1,9 @@
-﻿using BasicApi.Data;
+﻿using AutoMapper;
+using BasicApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper.QueryableExtensions;
 
 namespace BasicApi.Controllers;
 
@@ -9,10 +11,14 @@ public class AgentsController : ControllerBase
 {
 
     private readonly BasicDataContext _context;
+    private readonly IMapper _mapper;
+    private readonly MapperConfiguration _config;
 
-    public AgentsController(BasicDataContext context)
+    public AgentsController(BasicDataContext context, IMapper mapper, MapperConfiguration config)
     {
         _context = context;
+        _mapper = mapper;
+        _config = config;
     }
 
     [HttpGet("/agents")]
@@ -22,15 +28,7 @@ public class AgentsController : ControllerBase
         var response = new GetAgentsResponse();
         response.Agents = await _context.Agents!
              .Where(a => a.Retired == false)
-             .Select(a => new AgentResponseItem // Map
-            {
-                 Id = a.Id,
-                 FirstName = a.FirstName,
-                 LastName = a.LastName,
-                 Email = a.Email,
-                 Phone = a.Phone
-
-             })
+             .ProjectTo<AgentResponseItem>(_config)
              .ToListAsync();
         return Ok(response); 
 
