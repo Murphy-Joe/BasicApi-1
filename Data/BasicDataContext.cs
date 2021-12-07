@@ -9,5 +9,5 @@ public class BasicDataContext : DbContext
 
     }
 
-    public DbSet<Agent>? Agents { get; set; }
+    public DbSet<Agent>? Agents { get; set; } 
 }
