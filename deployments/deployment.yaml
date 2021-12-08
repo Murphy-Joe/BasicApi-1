@@ -21,4 +21,7 @@ spec:
           - name: onCallApi
             value: "http://oncall-api-service"
           - name: ConnectionStrings__basic
-            value: 'server=sql-service;user=sa;password=TokyoJoe138!;database=basic_prod'
+            value: 'server=sql-server-service;user=sa;password=TokyoJoe138!;database=basic_prod'
+          # - name: ASPNETCORE_ENVIRONMENT
+          #   value: Development
+ 
