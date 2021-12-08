@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basic-api
+spec:
+  selector:
+    matchLabels:
+      app: basic-api
+  template:
+    metadata:
+      labels:
+        app: basic-api
+    spec:
+      containers:
+      - name: basic-api
+        image: basic-api:v1
+
+        ports:
+        - containerPort: 80
+        env:
+          - name: onCallApi
+            value: "http://oncall-api-service"
+          - name: ConnectionStrings__basic
+            value: 'server=sql-service;user=sa;password=TokyoJoe138!;database=basic_prod'
