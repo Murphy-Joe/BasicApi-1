@@ -37,7 +37,11 @@ var mapper = mapperConfiguration.CreateMapper();
 builder.Services.AddSingleton<IMapper>(mapper);
 builder.Services.AddSingleton<MapperConfiguration>(mapperConfiguration);
 
-builder.Services.AddTransient<ILookupOnCallDevelopers, LocalDeveloperLookup>();
+// builder.Services.AddTransient<ILookupOnCallDevelopers, LocalDeveloperLookup>();
+builder.Services.AddHttpClient<ILookupOnCallDevelopers, WebApiDeveloperLookup>(b =>
+{
+    b.BaseAddress = new Uri(builder.Configuration.GetValue<string>("onCallApi"));
+});
 // Services have to be registered before this .Build() call.
 var app = builder.Build();
 
