@@ -1,7 +1,9 @@
 
 using AutoMapper;
+using BasicApi;
 using BasicApi.AutomapperProfiles;
 using BasicApi.Data;
+using BasicApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Starting up!");
@@ -35,6 +37,7 @@ var mapper = mapperConfiguration.CreateMapper();
 builder.Services.AddSingleton<IMapper>(mapper);
 builder.Services.AddSingleton<MapperConfiguration>(mapperConfiguration);
 
+builder.Services.AddTransient<ILookupOnCallDevelopers, LocalDeveloperLookup>();
 // Services have to be registered before this .Build() call.
 var app = builder.Build();
 

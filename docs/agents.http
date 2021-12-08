@@ -12,7 +12,7 @@ GET http://localhost:1337/agents?state=CA HTTP/1.1
 
 
 ### GET a specific Agent
-GET http://localhost:1337/agents/5 HTTP/1.1
+GET http://localhost:1337/agents/1 HTTP/1.1
 
 
 ### POST an Agent
@@ -32,3 +32,25 @@ Content-Type: application/json
 
 DELETE http://localhost:1337/agents/7 HTTP/1.1
 
+
+### Replacing An Agent
+
+PUT http://localhost:1337/agents/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": 99,
+  "firstName": "John ",
+  "lastName": "Cassavetes",
+  "phone": "555-1213",
+  "email": "john@nyfilm.com",
+  "state": "OH",
+  "salary": 500000
+}
+
+
+### MiniPut on agents email
+PUT http://localhost:1337/agents/1/email HTTP/1.1
+Content-Type: application/json
+
+"john@compuserve.com"
